@@ -15,6 +15,8 @@ import java.time.LocalDate;
  *   "Goodbye from Spring Boot!"
  */
 
+import java.time.LocalDate;
+
 @RestController
 public class HelloController {
 
@@ -23,12 +25,19 @@ public class HelloController {
         return "Hello from Spring Boots!";
     }
 
+    /*paused for activity 5
     @GetMapping("/status")
     public String status(){
         return "API running -" + LocalDate.now().toString();
+    }*/
+
+    @GetMapping("/status")
+    public String status() {
+        return "Application is running. Today's date: " + LocalDate.now().toString();
     }
 
     // TODO (Activity 3): add your /goodbye endpoint here.
     @GetMapping("/goodbye")
     public String goodbye(){ return "Goodbye from Spring Boots!"; }
+
 }
