@@ -18,3 +18,4 @@ public class Product{
     public double getPrice() { return price; }
 }
 
+// Tutorial 2 Activity 3: verified getter removal affects JSON output
