@@ -1,10 +1,11 @@
 package uk.ac.westminster.products_api;
 
 
-public class DigitalProduct extends Product {
+public class DigitalProduct extends Product implements Discountable {
 
     private String downloadUrl;
     private double fileSizeMB;
+    private double discountedPrice;
 
     // No-argument constructor
     // no-arg constructor — Jackson needs this to build
@@ -24,6 +25,25 @@ public class DigitalProduct extends Product {
         this.fileSizeMB = fileSizeMB;
     }
 
+    //Override getSummary() from Product
+    @Override
+    public String getSummary() {
+        return "Digital: " + getName()
+                + " | Download: " + downloadUrl;
+    }
+
+    //Apply discount
+    @Override
+    public void applyDiscount(double rate) {
+        discountedPrice = getPrice() * (1 - rate);
+    }
+
+    //Return discounted price
+    @Override
+    public double getDiscountedPrice() {
+        return discountedPrice;
+    }
+
     // Getter for downloadUrl
     public String getDownloadUrl() {
         return downloadUrl;
@@ -34,4 +54,8 @@ public class DigitalProduct extends Product {
         return fileSizeMB;
     }
 }
+
+
+
+
 

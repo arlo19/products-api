@@ -4,10 +4,11 @@ package uk.ac.westminster.products_api;
 // properties of a product, such as id, name and price.
 // A ShoppingCart is not a Product because it contains products.
 
-public class PhysicalProduct extends Product {
+public class PhysicalProduct extends Product implements Discountable {
 
     private double weightKg;
     private String dimensions;
+    private double discountedPrice;
 
     // TODO (a): empty no-arg constructor for Jackson
     // No-argument constructor
@@ -27,6 +28,24 @@ public class PhysicalProduct extends Product {
 
         this.weightKg = weightKg;
         this.dimensions = dimensions;
+    }
+
+    //Override getSummary() from Product
+    @Override
+    public String getSummary() {
+        return "Physical: " + getName()
+                + " | Weight: " + weightKg + " kg";
+    }
+    @Override
+    public void applyDiscount(double rate) {
+
+        double capped = Math.min(rate, 0.20); // TODO (a): cap the rate at 0.20 with Math.min
+        discountedPrice = getPrice() * (1 - capped); // TODO (b): apply the capped rate, not the rate
+    }
+
+    @Override
+    public double getDiscountedPrice() {
+        return discountedPrice;
     }
 
     // TODO (c): getWeightKg() and getDimensions()

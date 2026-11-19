@@ -1,9 +1,17 @@
 package uk.ac.westminster.products_api;
 
-public class Product{
+//abstract class cannot be instantiated directly.
+//Product p = new Product();
+
+public abstract class Product{
     private Long id;
     private String name;
     private double price;
+
+    // Tutorial 5 Activity 1: getSummary()
+    //public String getSummary() {
+      //  return getName() + " — £" + getPrice();
+    //}
 
     public Product() {}
 
@@ -12,6 +20,9 @@ public class Product{
         this.name = name;
         this.price = price;
     }
+
+    //getSummary() when class is abstract
+    public abstract String getSummary();
 
     public Long getId() { return id; }
     public String getName() { return name; }
@@ -25,3 +36,5 @@ public class Product{
     public void setName(String name) { this.name = name; }
     public void setPrice(double price) { this.price = price; }
 }
+
+
